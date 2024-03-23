@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="openModal">開く</button>
+      <div
+        v-if="isModalOpen"
+        class="modal-background"
+        @click="closeModalOnBackgroundClick"
+      >
+        <div class="modal" @click.stop>
+          <h2>モーダルウィンドウ</h2>
+          <button @click="closeModal">閉じる</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            isModalOpen: false,
+          };
+        },
+        methods: {
+          openModal() {
+            this.isModalOpen = true;
+          },
+          closeModal() {
+            this.isModalOpen = false;
+          },
+          closeModalOnBackgroundClick() {
+            this.closeModal();
+          },
+        },
+      });
+    </script>
+
+    <style>
+      .modal-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(198,196,198);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal {
+        width: 200px;
+        background-color: white;
+        padding: 30px 100px;
+        text-align: center;
+      }
+
+      .modal button {
+        margin-top: 10px;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin: 0;
+      }
+    </style>
+  </body>
+</html>
